@@ -40,5 +40,28 @@ func ConnectDataBase() {
 
 	DB.AutoMigrate(
 		&User{},
+		&Campuses{},
+		&Managers{},
+		&Programs{},
+		&AreaDirector{},
+		&DepartmentHead{},
+		&WebsiteBanner{},
+		&Tour{},
+		&TourExpenses{},
+		&ToursAndExpenses{},
+		&StudentPayments{},
+		&StudentsAndPayments{},
+		&CampusPayments{},
+		&CampusesAndPayments{},
+		&TourCampusManagerResponsible{},
+		&TourRooming{},
+		&TourTrackRecord{},
+		&CampusTourRequest{},
+		&Students{},
+		&Parents{},
+		&Responsible{},
+		&CampusTour{},
+		&TourExpenses{},
+		&PoritonTrackReport{},
 	)
 }
