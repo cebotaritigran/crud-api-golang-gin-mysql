@@ -266,7 +266,7 @@ type TourCampusManagerResponsible struct {
 	UpdatedAt      time.Time `gorm:"not null;type:timestamp;autoUpdateTime:true;default:CURRENT_TIMESTAMP()"`
 }
 
-type PoritonTrackReport struct {
+type AdvisorTrackReport struct {
 	ID         int       `gorm:"not null;primaryKey;autoIncrement"`
 	Student_id int       `gorm:"type:int(11)" json:"studentid"`
 	Advisor    string    `gorm:"not null;type:varchar(115);default:''" json:"advisor"`

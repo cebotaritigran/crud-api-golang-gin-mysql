@@ -62,6 +62,6 @@ func ConnectDataBase() {
 		&Responsible{},
 		&CampusTour{},
 		&TourExpenses{},
-		&PoritonTrackReport{},
+		&AdvisorTrackReport{},
 	)
 }
