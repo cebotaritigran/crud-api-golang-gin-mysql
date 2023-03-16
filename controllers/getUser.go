@@ -10,6 +10,7 @@ import (
 
 func CurrentUser(c *gin.Context) {
 
+	// gets user id from extract token id function
 	user_id, err := token.ExtractTokenID(c)
 
 	if err != nil {
@@ -17,6 +18,7 @@ func CurrentUser(c *gin.Context) {
 		return
 	}
 
+	// get user from database by their id
 	u, err := models.GetUserByID(user_id)
 
 	if err != nil {
@@ -24,5 +26,6 @@ func CurrentUser(c *gin.Context) {
 		return
 	}
 
+	// pass user with http response
 	c.JSON(http.StatusOK, gin.H{"message": "success", "data": u})
 }
