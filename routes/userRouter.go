@@ -58,4 +58,6 @@ func UserRoutes(incomingRoutes *gin.Engine) {
 	i.GET("/log-students:page", controllers.LogStudents)
 	i.GET("/record-track-report", controllers.RecordTrackReport)
 	i.GET("/record-track-report:page", controllers.RecordTrackReport)
+	// post test
+	i.POST("/manager-insert", controllers.PostManagers)
 }

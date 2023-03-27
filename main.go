@@ -2,11 +2,14 @@ package main
 
 import (
 	"crud-api/models"
+	routes "crud-api/routes"
 	"log"
 	"os"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
+	cors "github.com/rs/cors/wrapper/gin"
+	"github.com/unrolled/secure"
 )
 
 func main() {
@@ -19,21 +22,56 @@ func main() {
 	// getting the port from .env file
 	port := os.Getenv("PORT")
 
-	// if port variable is empty assigning it 8000
 	if port == "" {
 		port = "8000"
 	}
 
-	// returns and engine without any middleware attactcht that runs the server
+	/**/
+	//SECURE PACKAGE
+	secureMiddleware := secure.New(secure.Options{
+		SSLRedirect:          false, // set it to false because postman doesn't allow https on localhost
+		ForceSTSHeader:       true,
+		STSSeconds:           31536000,
+		STSIncludeSubdomains: true,
+		STSPreload:           true,
+		FrameDeny:            true,
+	})
+	secureFunc := func() gin.HandlerFunc {
+		return func(c *gin.Context) {
+			err := secureMiddleware.Process(c.Writer, c.Request)
+
+			// If there was an error, do not continue.
+			if err != nil {
+				c.Abort()
+				return
+			}
+
+			// Avoid header rewrite if response is a redirection.
+			if status := c.Writer.Status(); status > 300 && status < 399 {
+				c.Abort()
+			}
+		}
+	}()
+	/**/
+
 	router := gin.New()
-	// logger will output logs about any successful or unsuccessful calls
+
+	/**/
+	//SECURE PACKAGE
+	router.Use(secureFunc)
+	/**/
+
+	// logger will output logs about any successful or unsuccessful callls
 	router.Use(gin.Logger())
-	// recovery is to handle any panic with 500  (not necesary)
+	// recovery is to handle any panic with 500  (not necesarry)
 	router.Use(gin.Recovery())
 
-	// runs get method on /api-1 path with func(c *gin.Context) handler
+	router.Use(cors.Default()) // TO BE REMOVED
+
+	routes.AuthRoutes(router)
+	routes.UserRoutes(router)
+
 	router.GET("/api-1", func(c *gin.Context) {
-		//passes raw json with key and value
 		c.JSON(200, gin.H{"success": "Access granted for api-1"})
 	})
 
@@ -41,6 +79,5 @@ func main() {
 		c.JSON(200, gin.H{"success": "Access granted for api-2"})
 	})
 
-	//runs the server on given port
 	router.Run(":" + port)
 }

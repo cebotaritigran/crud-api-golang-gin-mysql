@@ -230,15 +230,15 @@ type CampusTourRequest struct {
 }
 
 type TourTrackRecord struct {
-	ID                          int       `gorm:"not null;primaryKey;autoIncrement"`
-	Student_id                  int       `gorm:"type:int(11)" json:"studentid"`
-	Campus_id                   int       `gorm:"type:int(11)" json:"campuseid"`
-	Tour_id                     int       `gorm:"type:int(11)" json:"tourid"`
-	Tour_campuse_responsible_id int       `gorm:"type:int(11)" json:"tourcampuserid"`
-	StudentsAndPayments_id      int       `gorm:"type:int(11)" json:"studentandpaymentsid"`
-	Canceled                    bool      `gorm:"not null;type:tinyint(4);default:0;" json:"canceled"`
-	CreatedAt                   time.Time `gorm:"not null;type:timestamp;autoUpdateTime:true;default:CURRENT_TIMESTAMP()"`
-	UpdatedAt                   time.Time `gorm:"not null;type:timestamp;autoUpdateTime:true;default:CURRENT_TIMESTAMP()"`
+	ID                         int       `gorm:"not null;primaryKey;autoIncrement"`
+	Student_id                 int       `gorm:"type:int(11)" json:"studentid"`
+	Campus_id                  int       `gorm:"type:int(11)" json:"campuseid"`
+	Tour_id                    int       `gorm:"type:int(11)" json:"tourid"`
+	Tour_campus_responsible_id int       `gorm:"type:int(11)" json:"tourcampuserid"`
+	StudentsAndPayments_id     int       `gorm:"type:int(11)" json:"studentandpaymentsid"`
+	Canceled                   bool      `gorm:"not null;type:tinyint(4);default:0;" json:"canceled"`
+	CreatedAt                  time.Time `gorm:"not null;type:timestamp;autoUpdateTime:true;default:CURRENT_TIMESTAMP()"`
+	UpdatedAt                  time.Time `gorm:"not null;type:timestamp;autoUpdateTime:true;default:CURRENT_TIMESTAMP()"`
 }
 
 type TourRooming struct {
@@ -247,10 +247,10 @@ type TourRooming struct {
 	Campus_id  int `gorm:"type:int(11)" json:"campuseid"`
 	Tour_id    int `gorm:"type:int(11)" json:"tourid"`
 	// foreign key to relational database between responsibles tours and campuses
-	Tour_campuse_responsible_id int       `gorm:"type:int(11)" json:"tourcampuserid"`
-	RoomNumber                  string    `gorm:"not null;type:varchar(115);default:''" json:"roomnumber"`
-	CreatedAt                   time.Time `gorm:"not null;type:timestamp;autoUpdateTime:true;default:CURRENT_TIMESTAMP()"`
-	UpdatedAt                   time.Time `gorm:"not null;type:timestamp;autoUpdateTime:true;default:CURRENT_TIMESTAMP()"`
+	Tour_campus_responsible_id int       `gorm:"type:int(11)" json:"tourcampuserid"`
+	RoomNumber                 string    `gorm:"not null;type:varchar(115);default:''" json:"roomnumber"`
+	CreatedAt                  time.Time `gorm:"not null;type:timestamp;autoUpdateTime:true;default:CURRENT_TIMESTAMP()"`
+	UpdatedAt                  time.Time `gorm:"not null;type:timestamp;autoUpdateTime:true;default:CURRENT_TIMESTAMP()"`
 }
 
 type TourCampusManagerResponsible struct {
@@ -264,15 +264,4 @@ type TourCampusManagerResponsible struct {
 	Status         bool      `gorm:"not null;type:tinyint(4);default:0;" json:"status"`
 	CreatedAt      time.Time `gorm:"not null;type:timestamp;autoUpdateTime:true;default:CURRENT_TIMESTAMP()"`
 	UpdatedAt      time.Time `gorm:"not null;type:timestamp;autoUpdateTime:true;default:CURRENT_TIMESTAMP()"`
-}
-
-type AdvisorTrackReport struct {
-	ID         int       `gorm:"not null;primaryKey;autoIncrement"`
-	Student_id int       `gorm:"type:int(11)" json:"studentid"`
-	Advisor    string    `gorm:"not null;type:varchar(115);default:''" json:"advisor"`
-	Countries  string    `gorm:"not null;type:varchar(115);default:''" json:"countries"`
-	Language   string    `gorm:"not null;type:varchar(115);default:''" json:"language"`
-	Departmant string    `gorm:"not null;type:varchar(115);default:''" json:"departmant"`
-	CreatedAt  time.Time `gorm:"not null;type:timestamp;autoUpdateTime:true;default:CURRENT_TIMESTAMP()"`
-	UpdatedAt  time.Time `gorm:"not null;type:timestamp;autoUpdateTime:true;default:CURRENT_TIMESTAMP()"`
 }

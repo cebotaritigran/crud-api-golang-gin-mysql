@@ -62,6 +62,7 @@ func ConnectDataBase() {
 		&Responsible{},
 		&CampusTour{},
 		&TourExpenses{},
-		&AdvisorTrackReport{},
 	)
+	//to be changed later maybe its not the correct way
+	//DB.Model(&CampuseManager{}).AddForeignKey("id", "managers(id)", "RESTRICT", "RESTRICT")
 }

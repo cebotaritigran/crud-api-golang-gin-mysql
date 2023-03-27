@@ -12,3 +12,11 @@ type RegisterInput struct {
 	Email      string `json:"email" binding:"required"`
 	Password   string `json:"password" binding:"required"`
 }
+
+// post test
+type ManagerInput struct {
+	First_name   string `json:"first_name" binding:"required"`
+	Last_name    string `json:"last_name" binding:"required"`
+	Phone_number string `json:"phone_number" binding:"required"`
+	Email        string `json:"email" binding:"required"`
+}
